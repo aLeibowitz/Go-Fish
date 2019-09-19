@@ -1,0 +1,14 @@
+C:\Users\Student\source\repos\GoFish-VL\GoFish-VL\bin\Debug\GoFish-VL.exe.config
+C:\Users\Student\source\repos\GoFish-VL\GoFish-VL\bin\Debug\GoFish-VL.exe
+C:\Users\Student\source\repos\GoFish-VL\GoFish-VL\bin\Debug\GoFish-VL.pdb
+C:\Users\Student\source\repos\GoFish-VL\GoFish-VL\obj\Debug\GoFish-VL.csprojAssemblyReference.cache
+C:\Users\Student\source\repos\GoFish-VL\GoFish-VL\obj\Debug\GoFish-VL.csproj.CoreCompileInputs.cache
+C:\Users\Student\source\repos\GoFish-VL\GoFish-VL\obj\Debug\GoFish-VL.exe
+C:\Users\Student\source\repos\GoFish-VL\GoFish-VL\obj\Debug\GoFish-VL.pdb
+F:\Vivi's stuff\GoFish-VL\GoFish-VL\bin\Debug\GoFish-VL.exe.config
+F:\Vivi's stuff\GoFish-VL\GoFish-VL\bin\Debug\GoFish-VL.exe
+F:\Vivi's stuff\GoFish-VL\GoFish-VL\bin\Debug\GoFish-VL.pdb
+F:\Vivi's stuff\GoFish-VL\GoFish-VL\obj\Debug\GoFish-VL.csprojAssemblyReference.cache
+F:\Vivi's stuff\GoFish-VL\GoFish-VL\obj\Debug\GoFish-VL.csproj.CoreCompileInputs.cache
+F:\Vivi's stuff\GoFish-VL\GoFish-VL\obj\Debug\GoFish-VL.exe
+F:\Vivi's stuff\GoFish-VL\GoFish-VL\obj\Debug\GoFish-VL.pdb
