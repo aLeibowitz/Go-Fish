@@ -12,3 +12,10 @@ F:\Vivi's stuff\GoFish-VL\GoFish-VL\obj\Debug\GoFish-VL.csprojAssemblyReference.
 F:\Vivi's stuff\GoFish-VL\GoFish-VL\obj\Debug\GoFish-VL.csproj.CoreCompileInputs.cache
 F:\Vivi's stuff\GoFish-VL\GoFish-VL\obj\Debug\GoFish-VL.exe
 F:\Vivi's stuff\GoFish-VL\GoFish-VL\obj\Debug\GoFish-VL.pdb
+C:\Users\Vivi Leibowitz\Source\Repos\Go-Fish\GoFish-VL\obj\Debug\GoFish-VL.csprojAssemblyReference.cache
+C:\Users\Vivi Leibowitz\Source\Repos\Go-Fish\GoFish-VL\obj\Debug\GoFish-VL.csproj.CoreCompileInputs.cache
+C:\Users\Vivi Leibowitz\Source\Repos\Go-Fish\GoFish-VL\obj\Debug\GoFish-VL.exe
+C:\Users\Vivi Leibowitz\Source\Repos\Go-Fish\GoFish-VL\obj\Debug\GoFish-VL.pdb
+C:\Users\Vivi Leibowitz\Source\Repos\Go-Fish\GoFish-VL\bin\Debug\GoFish-VL.exe.config
+C:\Users\Vivi Leibowitz\Source\Repos\Go-Fish\GoFish-VL\bin\Debug\GoFish-VL.exe
+C:\Users\Vivi Leibowitz\Source\Repos\Go-Fish\GoFish-VL\bin\Debug\GoFish-VL.pdb

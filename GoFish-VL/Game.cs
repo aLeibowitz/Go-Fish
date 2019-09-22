@@ -6,32 +6,39 @@ using System.Threading.Tasks;
 
 namespace GoFish_VL
 {
-	public class Game
-	{
+    public class Game
+    {
         public ArrayList cardsWon = new ArrayList { };
         public ArrayList cardsOfSameRank = new ArrayList { };
         public ArrayList pl1Books = new ArrayList { };
         public ArrayList compBooks = new ArrayList { };
         public int pl1NumOfBooks = 0;
         public int compNumOfBooks = 0;
+        public Deck deck;
+        
 
-		public string AskForCard()
-		{
-			Console.WriteLine("Type in the card you want to ask me for: ");
-			string cardWanted = Console.ReadLine();
-			return cardWanted;
-		}
+        public Game(Deck deck)
+        {
+            this.deck = deck;
+        }
 
-		public bool CheckIfHas(ArrayList deck, string cardWanted)
-		{
-			bool containsIt = false;
-			foreach (Cards card in deck)
-			{
-				if (cardWanted == card._rank)
-					return containsIt = true;
-			}
-			return containsIt;
-		}
+        public string AskForCard()
+        {
+            Console.WriteLine("Type in the card you want to ask me for: ");
+            string cardWanted = Console.ReadLine();
+            return cardWanted;
+        }
+
+        public bool CheckIfHas(ArrayList deck, string cardWanted)
+        {
+            bool containsIt = false;
+            foreach (Cards card in deck)
+            {
+                if (cardWanted == card._rank)
+                    return containsIt = true;
+            }
+            return containsIt;
+        }
 
         public void RemoveCards(ArrayList deck, string cardWanted) //the first parameter is the deck of the one giving up the cards.
         {
@@ -96,5 +103,43 @@ namespace GoFish_VL
             }
 
         }
-	}
+
+        public void HumanPlayerTurn()
+        {
+            ////show the player his cards
+            //Console.WriteLine("Here are your cards: ");
+            //deck.PrintDeck(deck.pl1Cards);
+            
+            string cardWanted = AskForCard();
+            bool validRequest = CheckIfHas(deck.pl1Cards, cardWanted);
+            if (!validRequest)
+            {
+                Console.WriteLine("You may only ask for a rank which you already have. Please try again.");
+                HumanPlayerTurn();
+            }
+            else
+            {
+                bool containsIt = CheckIfHas(deck.compCards, cardWanted); //for computer's turn, jsut put in the player's deck as the 1st parameter.
+                if (containsIt)
+                {
+                    Console.WriteLine("Good for you! I have it!");
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, go fish!");
+                    Console.WriteLine();
+                }
+
+                if (containsIt == true)
+                {
+                    RemoveCards(deck.compCards, cardWanted); //1st parameter is the one giving up the cards.
+                    AddThemIn(deck.pl1Cards); //this parameter is the one who asked for them.
+                } 
+                CheckForBooks(deck.pl1Cards, pl1Books, pl1NumOfBooks); //1st parameter:whose turn it is. 2nd parameter: his book pile. 3rd: his amount of books.
+
+            }
+
+        }
+    }
 }

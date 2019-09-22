@@ -17,48 +17,64 @@ namespace GoFish_VL
 			players.Add(comp);
 
 
-			Deck deck1 = new Deck();
-			deck1.CreateDeck();
-			//deck.PrintDeck();
-			deck1.ShuffleDeck();
-			//deck1.PrintDeck(deck1.deck);
-			deck1.Deal();
+			Deck deck = new Deck();
+			deck.CreateDeck();
+			//deck.PrintDeck(deck.deck);
+			deck.ShuffleDeck();
+			//deck.PrintDeck(deck.deck);
+			deck.Deal();
 			Console.WriteLine("Here are your cards: ");
-			deck1.PrintDeck(deck1.pl1Cards);
+			deck.PrintDeck(deck.pl1Cards);
 			Console.WriteLine("These are my cards: ");
-			deck1.PrintDeck(deck1.compCards);
+			deck.PrintDeck(deck.compCards);
+
+            Game game = new Game(deck);
 
             do
             {
                 //show the player his cards
                 Console.WriteLine("Here are your cards: ");
-                deck1.PrintDeck(deck1.pl1Cards);
+                deck.PrintDeck(deck.pl1Cards);
 
-                Game game = new Game();
-                string cardWanted = game.AskForCard();
-                bool containsIt = game.CheckIfHas(deck1.compCards, cardWanted); //for computer's turn, jsut put in the player's deck as the 1st parameter.
-                if (containsIt)
-                {
-                    Console.WriteLine("Good for you! I have it!");
-                    Console.WriteLine();
-                }
-                else { Console.WriteLine("Sorry, go fish!");
-                    Console.WriteLine();
-                }
+                game.HumanPlayerTurn();
 
-                if (containsIt == true)
-                { game.RemoveCards(deck1.compCards, cardWanted); //1st parameter is the one giving up the cards.
-                    game.AddThemIn(deck1.pl1Cards); } //this parameter is the one who asked for them.
-                game.CheckForBooks(deck1.pl1Cards, game.pl1Books, game.pl1NumOfBooks); //1st parameter:whose turn it is. 2nd parameter: his book pile. 3rd: his amount of books.
-                
+                //Game game = new Game();
+                //string cardWanted = game.AskForCard();
+                //bool validRequest = game.CheckIfHas(deck.pl1Cards, cardWanted);
+                //if (!validRequest)
+                //{
+                //    Console.WriteLine("You may only ask for a rank which you already have. Please try again.");
+                //    cardWanted = game.AskForCard();
+                //}
+                //else
+                //{
+                //    bool containsIt = game.CheckIfHas(deck.compCards, cardWanted); //for computer's turn, jsut put in the player's deck as the 1st parameter.
+                //    if (containsIt)
+                //    {
+                //        Console.WriteLine("Good for you! I have it!");
+                //        Console.WriteLine();
+                //    }
+                //    else
+                //    {
+                //        Console.WriteLine("Sorry, go fish!");
+                //        Console.WriteLine();
+                //    }
+
+                //    if (containsIt == true)
+                //    {
+                //        game.RemoveCards(deck.compCards, cardWanted); //1st parameter is the one giving up the cards.
+                //        game.AddThemIn(deck.pl1Cards);
+                //    } //this parameter is the one who asked for them.
+                //    game.CheckForBooks(deck.pl1Cards, game.pl1Books, game.pl1NumOfBooks); //1st parameter:whose turn it is. 2nd parameter: his book pile. 3rd: his amount of books.
+                //}
 
                 Console.WriteLine("Here are your cards: ");
-                deck1.PrintDeck(deck1.pl1Cards);
+                deck.PrintDeck(deck.pl1Cards);
                 Console.WriteLine("These are my cards: ");
-                deck1.PrintDeck(deck1.compCards);
+                deck.PrintDeck(deck.compCards);
 
             }
-			while (deck1.centerPile.Count > 0);
+			while (deck.centerPile.Count > 0);
 
 			Console.ReadKey();
 		}
