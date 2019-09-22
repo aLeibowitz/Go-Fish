@@ -35,6 +35,8 @@ namespace GoFish_VL
                 //show the player his cards
                 Console.WriteLine("Here are your cards: ");
                 deck.PrintDeck(deck.pl1Cards);
+                Console.WriteLine("Number of books you already won: {0}", game.pl1NumOfBooks);
+                Console.WriteLine();
 
                 game.HumanPlayerTurn();
 

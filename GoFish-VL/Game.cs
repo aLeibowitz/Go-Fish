@@ -93,6 +93,7 @@ namespace GoFish_VL
 
                 if (numOfRank == 4)
                 {
+                    Console.WriteLine("Great job! You got 4 cards of the same rank!");
                     foreach (Cards card in cardsOfSameRank)
                     {
                         booksPile.Add(cardsOfSameRank);
@@ -115,6 +116,7 @@ namespace GoFish_VL
             if (!validRequest)
             {
                 Console.WriteLine("You may only ask for a rank which you already have. Please try again.");
+                Console.WriteLine();
                 HumanPlayerTurn();
             }
             else
