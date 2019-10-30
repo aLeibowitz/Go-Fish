@@ -12,9 +12,11 @@ namespace GoFish_VL
 		{
 			Player pl1 = new Player();
 			Player comp = new Player();
-			ArrayList players = new ArrayList();
-			players.Add(pl1);
-			players.Add(comp);
+            ArrayList players = new ArrayList
+            {
+                pl1,
+                comp
+            };
 
 
 			Deck deck = new Deck();
@@ -33,10 +35,10 @@ namespace GoFish_VL
             do
             {
                 //show the player his cards
-                Console.WriteLine("Here are your cards: ");
-                deck.PrintDeck(deck.pl1Cards);
-                Console.WriteLine("Number of books you already won: {0}", game.pl1NumOfBooks);
-                Console.WriteLine();
+                //Console.WriteLine("Here are your cards: ");
+                //deck.PrintDeck(deck.pl1Cards);
+                //Console.WriteLine("Number of books you already won: {0}", game.pl1NumOfBooks);
+                //Console.WriteLine();
 
                 game.HumanPlayerTurn();
 
@@ -76,7 +78,7 @@ namespace GoFish_VL
                 deck.PrintDeck(deck.compCards);
 
             }
-			while (deck.centerPile.Count > 0);
+			while (deck.centerPile.Count > 0); //not correct. change it to when all 13 books have been won.
 
 			Console.ReadKey();
 		}

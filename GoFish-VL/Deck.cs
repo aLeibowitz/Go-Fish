@@ -8,10 +8,10 @@ namespace GoFish_VL
 {
 	public class Deck
 	{
-		public ArrayList deck = new ArrayList { };
+		public ArrayList centerPile = new ArrayList { };
 		public ArrayList pl1Cards = new ArrayList { };
 		public ArrayList compCards = new ArrayList { };
-		public Queue centerPile = new Queue { };
+		//public Queue centerPile = new Queue { };
 
 
 
@@ -25,7 +25,7 @@ namespace GoFish_VL
 				for (int j = 0; j < ranks.Count; j++)
 				{
 					Cards card = new Cards(suits[i], ranks[j].ToString());  // This is a class constructor. Making new cards as objects in the Cards class, with 2 attributes: suit and rank.
-					deck.Add(card);
+					centerPile.Add(card);
 				}
 			}
 		}
@@ -39,6 +39,17 @@ namespace GoFish_VL
             Console.WriteLine();
 		}
 
+        //public void PrintPickedCard(ArrayList originalDeck, ArrayList updatedDeck)
+        //{
+        //    foreach (Cards card in updatedDeck)
+        //    {
+        //        if (!originalDeck.Contains(card))
+        //            {
+        //            card.PrintCard();
+        //            Console.WriteLine(" ");
+        //            }
+        //    }
+        //}
 		
 
 		public void ShuffleDeck()
@@ -49,9 +60,9 @@ namespace GoFish_VL
 			{
 				int randomIndex1 = r.Next(52);
 				int randomIndex2 = r.Next(52);
-				object temp = deck[randomIndex1];
-				deck[randomIndex1] = deck[randomIndex2];
-				deck[randomIndex2] = temp;
+				object temp = centerPile[randomIndex1];
+				centerPile[randomIndex1] = centerPile[randomIndex2];
+				centerPile[randomIndex2] = temp;
 			}
 		}
 
@@ -59,24 +70,24 @@ namespace GoFish_VL
 		{
 			for (int i = 0; i < 7; i++) //giving the human player 7 cards, and removing those cards from the deck.
 				{
-				pl1Cards.Add(deck[i]);
-				deck.Remove(deck[i]);
+				pl1Cards.Add(centerPile[i]);
+				centerPile.Remove(centerPile[i]);
 				}
 			for (int j = 0; j < 7; j++) //giving the computer player 7 cards, and removing those cards from the deck.
 			{
-				compCards.Add(deck[j]);
-				deck.Remove(deck[j]);
+				compCards.Add(centerPile[j]);
+				centerPile.Remove(centerPile[j]);
 			}
 		}
 
-		public void MakeCenterPile()
-		{
-			for (int i = 0; i < deck.Count; i++)
-			{
-				centerPile.Enqueue(deck[i]);
-				deck.Remove(deck[i]);
-			}
-		}
+		//public void MakeCenterPile()
+		//{
+		//	for (int i = 0; i < deck.Count; i++)
+		//	{
+		//		centerPile.Enqueue(deck[i]);
+		//		deck.Remove(deck[i]);
+		//	}
+		//}
 
 	}
 }

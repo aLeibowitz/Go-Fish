@@ -70,6 +70,7 @@ namespace GoFish_VL
         {
             foreach (Cards card in cardsWon)
                 deck.Add(card);
+            cardsWon.Clear();
         }
 
 
@@ -107,12 +108,16 @@ namespace GoFish_VL
 
         public void HumanPlayerTurn()
         {
-            ////show the player his cards
-            //Console.WriteLine("Here are your cards: ");
-            //deck.PrintDeck(deck.pl1Cards);
-            
-            string cardWanted = AskForCard();
-            bool validRequest = CheckIfHas(deck.pl1Cards, cardWanted);
+            //show the player his cards
+            Console.WriteLine("Here are your cards: ");
+            deck.PrintDeck(deck.pl1Cards);
+
+            //show the player how many books he won
+            Console.WriteLine("Number of books you already won: {0}", pl1NumOfBooks);
+            Console.WriteLine();
+
+            string cardRequested = AskForCard();
+            bool validRequest = CheckIfHas(deck.pl1Cards, cardRequested);
             if (!validRequest)
             {
                 Console.WriteLine("You may only ask for a rank which you already have. Please try again.");
@@ -121,25 +126,40 @@ namespace GoFish_VL
             }
             else
             {
-                bool containsIt = CheckIfHas(deck.compCards, cardWanted); //for computer's turn, jsut put in the player's deck as the 1st parameter.
-                if (containsIt)
+                bool success = CheckIfHas(deck.compCards, cardRequested); //for computer's turn, jsut put in the player's deck as the 1st parameter.
+                if (success)
                 {
                     Console.WriteLine("Good for you! I have it!");
-                    Console.WriteLine();
+                    Console.WriteLine("You get to go again.");
+
+                    RemoveCards(deck.compCards, cardRequested); //1st parameter is the one giving up the cards.
+                    AddThemIn(deck.pl1Cards); //this parameter is the one who asked for them.
+
+                    CheckForBooks(deck.pl1Cards, pl1Books, pl1NumOfBooks); //1st parameter:whose turn it is. 2nd parameter: his book pile. 3rd: his amount of books.
+
+                    HumanPlayerTurn();
                 }
                 else
                 {
                     Console.WriteLine("Sorry, go fish!");
-                    Console.WriteLine();
+                    
+                    deck.pl1Cards.Add(deck.centerPile[0]);
+                    
+                    deck.centerPile.Remove(deck.centerPile[0]);
+
+                    Console.WriteLine("You picked the card: ");
+                    
+
+                    //Console.WriteLine("These are your cards now: ");
+                    //deck.PrintDeck(deck.pl1Cards);
+                    //////Cards cardPicked = deck.centerPile[0];
+                    ////Console.Write("You picked the card: ");
+                    //cardPicked.PrintCard();
+                    
+                    //printDeck(cardPicked); //might not work b/c the parameter is an arraylist.
+                    //if (cardPicked._rank == cardRequested)
                 }
-
-                if (containsIt == true)
-                {
-                    RemoveCards(deck.compCards, cardWanted); //1st parameter is the one giving up the cards.
-                    AddThemIn(deck.pl1Cards); //this parameter is the one who asked for them.
-                } 
-                CheckForBooks(deck.pl1Cards, pl1Books, pl1NumOfBooks); //1st parameter:whose turn it is. 2nd parameter: his book pile. 3rd: his amount of books.
-
+                
             }
 
         }

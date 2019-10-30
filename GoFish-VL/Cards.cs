@@ -8,7 +8,7 @@ namespace GoFish_VL
 {
 	public class Cards
 	{
-		string _suit;
+        readonly string _suit;
 		public string _rank;
 
 		public Cards(string suit, string rank)
@@ -21,6 +21,7 @@ namespace GoFish_VL
 		{
 			Console.Write($"{this._rank} ({this._suit})");
 		}
+        
 
 		
 	}
