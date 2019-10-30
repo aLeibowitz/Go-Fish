@@ -118,6 +118,7 @@ namespace GoFish_VL
 
             string cardRequested = AskForCard();
             bool validRequest = CheckIfHas(deck.pl1Cards, cardRequested);
+            Console.WriteLine();
             if (!validRequest)
             {
                 Console.WriteLine("You may only ask for a rank which you already have. Please try again.");
@@ -144,11 +145,12 @@ namespace GoFish_VL
                     Console.WriteLine("Sorry, go fish!");
                     
                     deck.pl1Cards.Add(deck.centerPile[0]);
-                    
+                    Cards card = (Cards)deck.centerPile[0];
+
                     deck.centerPile.Remove(deck.centerPile[0]);
 
                     Console.WriteLine("You picked the card: ");
-                    
+                    card.PrintCard();
 
                     //Console.WriteLine("These are your cards now: ");
                     //deck.PrintDeck(deck.pl1Cards);
@@ -159,7 +161,7 @@ namespace GoFish_VL
                     //printDeck(cardPicked); //might not work b/c the parameter is an arraylist.
                     //if (cardPicked._rank == cardRequested)
                 }
-                
+                Console.WriteLine();
             }
 
         }

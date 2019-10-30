@@ -78,7 +78,7 @@ namespace GoFish_VL
                 deck.PrintDeck(deck.compCards);
 
             }
-			while (deck.centerPile.Count > 0); //not correct. change it to when all 13 books have been won.
+			while (deck.centerPile.Count > 0); //not correct. change it to when all 13 books have been won. i.e. while (compbookswon + humanbookswon <13)
 
 			Console.ReadKey();
 		}
