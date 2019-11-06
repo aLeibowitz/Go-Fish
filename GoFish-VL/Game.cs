@@ -24,7 +24,7 @@ namespace GoFish_VL
 
         public string AskForCard()
         {
-            Console.WriteLine("Type in the card you want to ask me for: ");
+            Console.WriteLine("Type in the rank of the card you want to ask me for: ");
             string cardWanted = Console.ReadLine();
             return cardWanted;
         }
@@ -145,12 +145,19 @@ namespace GoFish_VL
                     Console.WriteLine("Sorry, go fish!");
                     
                     deck.pl1Cards.Add(deck.centerPile[0]);
-                    Cards card = (Cards)deck.centerPile[0];
+                    Cards cardPicked = (Cards)deck.centerPile[0];
 
                     deck.centerPile.Remove(deck.centerPile[0]);
 
-                    Console.WriteLine("You picked the card: ");
-                    card.PrintCard();
+                    if (cardPicked._rank == cardRequested)
+                        {
+                            Console.WriteLine("You picked the card you asked for! Go again!");
+                            HumanPlayerTurn();
+                        }
+                else 
+                    {
+                            Console.WriteLine("You picked the card: ");
+                            cardPicked.PrintCard();
 
                     //Console.WriteLine("These are your cards now: ");
                     //deck.PrintDeck(deck.pl1Cards);
@@ -160,6 +167,7 @@ namespace GoFish_VL
                     
                     //printDeck(cardPicked); //might not work b/c the parameter is an arraylist.
                     //if (cardPicked._rank == cardRequested)
+                    }
                 }
                 Console.WriteLine();
             }
