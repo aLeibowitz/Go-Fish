@@ -98,7 +98,7 @@ namespace GoFish_VL
 
 
 
-        public void CheckForBooks(ArrayList deck, ArrayList booksPile)
+        public bool CheckForBooks(ArrayList deck, ArrayList booksPile)
         {
             ArrayList ranks = new ArrayList { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "JACK", "QUEEN", "KING" };
 
@@ -122,12 +122,16 @@ namespace GoFish_VL
                     {
                         Console.WriteLine($"Great job! You completed the book of {rank}'s!");
                         pl1NumOfBooks++;
+
+                        Console.WriteLine($"You have {pl1NumOfBooks} books so far! Keep it up!!!");
                     }
 
                     else if (currentPlayer == "Computer")
                     {
                         Console.WriteLine($"Good for me! I completed the book of {rank}'s!");
                         compNumOfBooks++;
+
+                        Console.WriteLine($"I have {compNumOfBooks} so far.");
                     }
 
                     foreach (Cards card in cardsOfSameRank)
@@ -136,16 +140,11 @@ namespace GoFish_VL
                         deck.Remove(card);
                     }
 
-                    if (currentPlayer == "Human")
-                        Console.WriteLine($"You have {pl1NumOfBooks} books so far! Keep it up!!!");
-
-                    else if (currentPlayer == "Computer")
-                        Console.WriteLine($"I have {compNumOfBooks} so far.");
-
+                    return true;
                 }
             }
             currentPlayer = null;
-
+            return false;
         }
 
         public void HumanPlayerTurn()
@@ -209,17 +208,21 @@ namespace GoFish_VL
                         }
                 else 
                     {
-                            CheckForBooks(deck.pl1Cards, pl1Books);
+                        bool winBook = CheckForBooks(deck.pl1Cards, pl1Books);
+                        if (winBook)
+                        {
+                            Console.WriteLine("Go again!");
+                            HumanPlayerTurn();
+                        }
+                            //Console.WriteLine("These are your cards now: ");
+                            //deck.PrintDeck(deck.pl1Cards);
+                            //////Cards cardPicked = deck.centerPile[0];
+                            ////Console.Write("You picked the card: ");
+                            //cardPicked.PrintCard();
 
-                        //Console.WriteLine("These are your cards now: ");
-                        //deck.PrintDeck(deck.pl1Cards);
-                        //////Cards cardPicked = deck.centerPile[0];
-                        ////Console.Write("You picked the card: ");
-                        //cardPicked.PrintCard();
-
-                        //printDeck(cardPicked); //might not work b/c the parameter is an arraylist.
-                        //if (cardPicked._rank == cardRequested)
-                    }
+                            //printDeck(cardPicked); //might not work b/c the parameter is an arraylist.
+                            //if (cardPicked._rank == cardRequested)
+                        }
                 }
                 Console.WriteLine();
             }
@@ -239,12 +242,12 @@ namespace GoFish_VL
             bool success = CheckIfHas(deck.pl1Cards, cardRequested);
             if (success)
             {
-                Console.WriteLine("Thanks! I get to go again!");
+                Console.WriteLine("Thanks!");
                 RemoveCards(deck.pl1Cards, cardRequested); //1st parameter is the one giving up the cards.
                 AddThemIn(deck.compCards); //this parameter is the one who asked for them.
 
                 CheckForBooks(deck.compCards, compBooks); //1st parameter:whose turn it is. 2nd parameter: his book pile. 3rd: his amount of books.
-
+                Console.WriteLine("I get to go again!");
                 ComputerPlayerTurn();
             }
             else
@@ -262,6 +265,15 @@ namespace GoFish_VL
                     CheckForBooks(deck.compCards, compBooks);
                     Console.WriteLine("I get to go again!");
                     ComputerPlayerTurn();
+                }
+                else
+                {
+                    bool winBook = CheckForBooks(deck.compCards, compBooks);
+                    if (winBook)
+                    {
+                        Console.WriteLine("I get to go again!");
+                        ComputerPlayerTurn();
+                    }
                 }
 
                 alreadyRequested.Clear();
