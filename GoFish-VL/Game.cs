@@ -150,8 +150,8 @@ namespace GoFish_VL
 
         public void HumanPlayerTurn()
         {
-            
 
+            Console.WriteLine();
             //first see if he made a match -- instead of writing it after picking and after getting a card, can do it here, cuz it makes them go again, anyways.
             
 
@@ -197,6 +197,9 @@ namespace GoFish_VL
 
                     deck.centerPile.Remove(deck.centerPile[0]);
 
+                    Console.WriteLine("You picked the card: ");
+                    cardPicked.PrintCard();
+
                     if (cardPicked._rank == cardRequested)
                         {
                             Console.WriteLine("You picked the card you asked for!");
@@ -206,18 +209,16 @@ namespace GoFish_VL
                         }
                 else 
                     {
-                            Console.WriteLine("You picked the card: ");
                             CheckForBooks(deck.pl1Cards, pl1Books);
-                            cardPicked.PrintCard();
 
-                    //Console.WriteLine("These are your cards now: ");
-                    //deck.PrintDeck(deck.pl1Cards);
-                    //////Cards cardPicked = deck.centerPile[0];
-                    ////Console.Write("You picked the card: ");
-                    //cardPicked.PrintCard();
-                    
-                    //printDeck(cardPicked); //might not work b/c the parameter is an arraylist.
-                    //if (cardPicked._rank == cardRequested)
+                        //Console.WriteLine("These are your cards now: ");
+                        //deck.PrintDeck(deck.pl1Cards);
+                        //////Cards cardPicked = deck.centerPile[0];
+                        ////Console.Write("You picked the card: ");
+                        //cardPicked.PrintCard();
+
+                        //printDeck(cardPicked); //might not work b/c the parameter is an arraylist.
+                        //if (cardPicked._rank == cardRequested)
                     }
                 }
                 Console.WriteLine();
