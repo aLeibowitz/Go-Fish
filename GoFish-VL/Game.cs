@@ -207,6 +207,7 @@ namespace GoFish_VL
                 else 
                     {
                             Console.WriteLine("You picked the card: ");
+                            CheckForBooks(deck.pl1Cards, pl1Books);
                             cardPicked.PrintCard();
 
                     //Console.WriteLine("These are your cards now: ");
@@ -247,7 +248,7 @@ namespace GoFish_VL
             }
             else
             {
-                Console.WriteLine("Nope? Ok, I'll go fish.");
+                Console.WriteLine("No? Ok, I'll go fish.");
 
                 deck.compCards.Add(deck.centerPile[0]);
                 Cards cardPicked = (Cards)deck.centerPile[0];
@@ -256,11 +257,14 @@ namespace GoFish_VL
 
                 if (cardPicked._rank == cardRequested)
                 {
-                    Console.WriteLine("I picked the card I asked for! I get to go again!");
+                    Console.WriteLine("I picked the card I asked for!");
+                    CheckForBooks(deck.compCards, compBooks);
+                    Console.WriteLine("I get to go again!");
                     ComputerPlayerTurn();
                 }
 
                 alreadyRequested.Clear();
+                CheckForBooks(deck.compCards, compBooks);
             }
             Console.WriteLine();
             

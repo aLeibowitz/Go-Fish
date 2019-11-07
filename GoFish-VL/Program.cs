@@ -34,6 +34,9 @@ namespace GoFish_VL
 
             do
             {
+                Console.WriteLine("These are my cards: ");
+                deck.PrintDeck(deck.compCards);
+
                 //show the player his cards
                 //Console.WriteLine("Here are your cards: ");
                 //deck.PrintDeck(deck.pl1Cards);
@@ -74,8 +77,7 @@ namespace GoFish_VL
 
                 //Console.WriteLine("Here are your cards: ");
                 //deck.PrintDeck(deck.pl1Cards);
-                Console.WriteLine("These are my cards: ");
-                deck.PrintDeck(deck.compCards);
+             
 
                 game.ComputerPlayerTurn();
             }
