@@ -98,7 +98,7 @@ namespace GoFish_VL
 
 
 
-        public void CheckForBooks(ArrayList deck, ArrayList booksPile, int numOfBooks)
+        public void CheckForBooks(ArrayList deck, ArrayList booksPile)
         {
             ArrayList ranks = new ArrayList { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "JACK", "QUEEN", "KING" };
 
@@ -119,17 +119,22 @@ namespace GoFish_VL
                 {
 
                     if (currentPlayer == "Human")
+                    {
                         Console.WriteLine($"Great job! You completed the book of {rank}'s!");
-                    
+                        pl1NumOfBooks++;
+                    }
+
                     else if (currentPlayer == "Computer")
+                    {
                         Console.WriteLine($"Good for me! I completed the book of {rank}'s!");
+                        compNumOfBooks++;
+                    }
 
                     foreach (Cards card in cardsOfSameRank)
                     {
                         booksPile.Add(card);  //did this first here and below: cardsOfSameRank
                         deck.Remove(card);
                     }
-                    numOfBooks++;
 
                     if (currentPlayer == "Human")
                         Console.WriteLine($"You have {pl1NumOfBooks} books so far! Keep it up!!!");
@@ -148,7 +153,7 @@ namespace GoFish_VL
             
 
             //first see if he made a match -- instead of writing it after picking and after getting a card, can do it here, cuz it makes them go again, anyways.
-            CheckForBooks(deck.pl1Cards, pl1Books, pl1NumOfBooks);
+            
 
             //show the player his cards
             Console.WriteLine("Here are your cards: ");
@@ -173,14 +178,14 @@ namespace GoFish_VL
                 if (success)
                 {
                     Console.WriteLine("I have it! Here you go.");
-                    Console.WriteLine("You get to go again!");
                     Console.WriteLine();
 
                     RemoveCards(deck.compCards, cardRequested); //1st parameter is the one giving up the cards.
                     AddThemIn(deck.pl1Cards); //this parameter is the one who asked for them.
 
-                    CheckForBooks(deck.pl1Cards, pl1Books, pl1NumOfBooks); //1st parameter:whose turn it is. 2nd parameter: his book pile. 3rd: his amount of books.
+                    CheckForBooks(deck.pl1Cards, pl1Books); //1st parameter:whose turn it is. 2nd parameter: his book pile. 3rd: his amount of books.
 
+                    Console.WriteLine("You get to go again!");
                     HumanPlayerTurn();
                 }
                 else
@@ -194,8 +199,10 @@ namespace GoFish_VL
 
                     if (cardPicked._rank == cardRequested)
                         {
-                            Console.WriteLine("You picked the card you asked for! Go again!");
-                            HumanPlayerTurn();
+                            Console.WriteLine("You picked the card you asked for!");
+                        CheckForBooks(deck.pl1Cards, pl1Books);
+                        Console.WriteLine("Go again!");
+                        HumanPlayerTurn();
                         }
                 else 
                     {
@@ -221,7 +228,7 @@ namespace GoFish_VL
         {
             currentPlayer = "Computer";
 
-            CheckForBooks(deck.compCards, compBooks, compNumOfBooks);
+            CheckForBooks(deck.compCards, compBooks);
 
             string cardRequested = AskForCard();
 
@@ -234,7 +241,7 @@ namespace GoFish_VL
                 RemoveCards(deck.pl1Cards, cardRequested); //1st parameter is the one giving up the cards.
                 AddThemIn(deck.compCards); //this parameter is the one who asked for them.
 
-                CheckForBooks(deck.compCards, compBooks, compNumOfBooks); //1st parameter:whose turn it is. 2nd parameter: his book pile. 3rd: his amount of books.
+                CheckForBooks(deck.compCards, compBooks); //1st parameter:whose turn it is. 2nd parameter: his book pile. 3rd: his amount of books.
 
                 ComputerPlayerTurn();
             }
