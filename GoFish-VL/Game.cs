@@ -16,7 +16,9 @@ namespace GoFish_VL
         public int compNumOfBooks = 0;
         public Deck deck;
         public string currentPlayer;
-        
+        ArrayList alreadyRequested = new ArrayList(); //to help computer be a little "smarter" and not ask for the same card twice in one turn.
+
+
 
         public Game(Deck deck)
         {
@@ -35,8 +37,6 @@ namespace GoFish_VL
             }
             else 
             {
-                ArrayList alreadyRequested = new ArrayList();
-
                 Random random = new Random();
                 int ixCompCards = random.Next(0, deck.compCards.Count);
 
@@ -252,6 +252,8 @@ namespace GoFish_VL
                     Console.WriteLine("I picked the card I asked for! I get to go again!");
                     ComputerPlayerTurn();
                 }
+
+                alreadyRequested.Clear();
             }
             Console.WriteLine();
             

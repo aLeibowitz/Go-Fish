@@ -25,8 +25,8 @@ namespace GoFish_VL
 			deck.ShuffleDeck();
 			//deck.PrintDeck(deck.deck);
 			deck.Deal();
-			Console.WriteLine("Here are your cards: ");
-			deck.PrintDeck(deck.pl1Cards);
+			//Console.WriteLine("Here are your cards: ");
+			//deck.PrintDeck(deck.pl1Cards);
 			Console.WriteLine("These are my cards: ");
 			deck.PrintDeck(deck.compCards);
 
@@ -72,8 +72,8 @@ namespace GoFish_VL
                 //    game.CheckForBooks(deck.pl1Cards, game.pl1Books, game.pl1NumOfBooks); //1st parameter:whose turn it is. 2nd parameter: his book pile. 3rd: his amount of books.
                 //}
 
-                Console.WriteLine("Here are your cards: ");
-                deck.PrintDeck(deck.pl1Cards);
+                //Console.WriteLine("Here are your cards: ");
+                //deck.PrintDeck(deck.pl1Cards);
                 Console.WriteLine("These are my cards: ");
                 deck.PrintDeck(deck.compCards);
 
