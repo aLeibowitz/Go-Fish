@@ -32,6 +32,8 @@ namespace GoFish_VL
 
 		public void PrintDeck(ArrayList deck)
 		{
+            SortDeck(deck);
+
 			foreach( Cards card in deck) // "Cards" is the class, "card" is an instantiation of the Cards class. 
 			{ card.PrintCard();				//that is why you can do card.PrintCard(); -- b/c card is ""!
 				Console.WriteLine(" ");
@@ -88,6 +90,11 @@ namespace GoFish_VL
 		//		deck.Remove(deck[i]);
 		//	}
 		//}
+
+        public void SortDeck(ArrayList deck)
+        {
+            deck.Sort(new MyComparer());
+        }
 
 	}
 }

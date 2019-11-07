@@ -126,7 +126,7 @@ namespace GoFish_VL
                         Console.WriteLine($"You have {pl1NumOfBooks} books so far! Keep it up!!!");
                     }
 
-                    else if (currentPlayer == "Computer")
+                    else //if (currentPlayer == "Computer")   --HAVE to see what's happening here. It takes the book out, but doesn't give a message.
                     {
                         Console.WriteLine($"Good for me! I completed the book of {rank}'s!");
                         compNumOfBooks++;
@@ -149,7 +149,7 @@ namespace GoFish_VL
 
         public void HumanPlayerTurn()
         {
-
+            
             Console.WriteLine();
             //first see if he made a match -- instead of writing it after picking and after getting a card, can do it here, cuz it makes them go again, anyways.
             
@@ -201,6 +201,7 @@ namespace GoFish_VL
 
                     if (cardPicked._rank == cardRequested)
                         {
+                        Console.WriteLine();
                             Console.WriteLine("You picked the card you asked for!");
                         CheckForBooks(deck.pl1Cards, pl1Books);
                         Console.WriteLine("Go again!");
@@ -232,7 +233,7 @@ namespace GoFish_VL
         public void ComputerPlayerTurn()
         {
             currentPlayer = "Computer";
-
+            Console.WriteLine();
             CheckForBooks(deck.compCards, compBooks);
 
             string cardRequested = AskForCard();
@@ -261,7 +262,7 @@ namespace GoFish_VL
 
                 if (cardPicked._rank == cardRequested)
                 {
-                    Console.WriteLine("I picked the card I asked for!");
+                    Console.WriteLine($"I picked {cardRequested}, the card I asked for!");
                     CheckForBooks(deck.compCards, compBooks);
                     Console.WriteLine("I get to go again!");
                     ComputerPlayerTurn();

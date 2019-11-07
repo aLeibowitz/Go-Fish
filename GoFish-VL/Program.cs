@@ -77,8 +77,7 @@ namespace GoFish_VL
 
                 //Console.WriteLine("Here are your cards: ");
                 //deck.PrintDeck(deck.pl1Cards);
-             
-
+                
                 game.ComputerPlayerTurn();
             }
             //while (deck.centerPile.Count > 0); //not correct. change it to when all 13 books have been won. i.e. while (compbookswon + humanbookswon <13)
