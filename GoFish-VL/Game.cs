@@ -131,7 +131,7 @@ namespace GoFish_VL
                         Console.WriteLine($"Good for me! I completed the book of {rank}'s!");
                         compNumOfBooks++;
 
-                        Console.WriteLine($"I have {compNumOfBooks} so far.");
+                        Console.WriteLine($"I have {compNumOfBooks} books so far.");
                     }
 
                     foreach (Cards card in cardsOfSameRank)
@@ -187,12 +187,17 @@ namespace GoFish_VL
 
         public void EndGame()
         {
-
+            Console.WriteLine("There are no more cards in the deck. Let's count our books and see who won!!");
+            Console.WriteLine();
             Console.WriteLine($"You won {pl1NumOfBooks} books, and I won {compNumOfBooks} books.");
 
             if (pl1NumOfBooks > compNumOfBooks)
             {
+                Console.WriteLine();
                 Console.WriteLine("YOU WIN!!!!");
+                Console.WriteLine("YOU WIN!!!!");
+                Console.WriteLine("YOU WIN!!!!");
+
             }
             else
             {
