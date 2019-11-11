@@ -38,8 +38,8 @@ namespace GoFish_VL
                 Console.WriteLine("Your turn now!");
                 Console.WriteLine();
             }
-            //while (deck.centerPile.Count > 0); //not correct. change it to when all 13 books have been won. i.e. while (compbookswon + humanbookswon <13)
-            while (game.pl1NumOfBooks + game.compNumOfBooks < 13); //no, do the above, easier to code
+            while (deck.centerPile.Count > 0); 
+            //while (game.pl1NumOfBooks + game.compNumOfBooks < 13); //this would be that the players keep on playing even after the deck is finished.
 
             Console.WriteLine($"You won {game.pl1NumOfBooks} books, and I won {game.compNumOfBooks} books.");
 
