@@ -42,12 +42,12 @@ namespace GoFish_VL
 
                 Cards cardRequested1 = (Cards)deck.compCards[ixCompCards];
                 cardRequested = cardRequested1._rank; //turns it into a string
-
+                
                 if (alreadyRequested.Contains(cardRequested))
-                    AskForCard();
+                        AskForCard();
 
                 else alreadyRequested.Add(cardRequested);
-                
+
                 return cardRequested;
             }
         }
@@ -207,7 +207,7 @@ namespace GoFish_VL
                         Console.WriteLine("Go again!");
                         HumanPlayerTurn();
                         }
-                else 
+                    else 
                     {
                         bool winBook = CheckForBooks(deck.pl1Cards, pl1Books);
                         if (winBook)
@@ -223,9 +223,8 @@ namespace GoFish_VL
 
                             //printDeck(cardPicked); //might not work b/c the parameter is an arraylist.
                             //if (cardPicked._rank == cardRequested)
-                        }
+                    }
                 }
-                Console.WriteLine();
             }
 
         }
@@ -233,54 +232,65 @@ namespace GoFish_VL
         public void ComputerPlayerTurn()
         {
             currentPlayer = "Computer";
-            Console.WriteLine();
             CheckForBooks(deck.compCards, compBooks);
 
-            string cardRequested = AskForCard();
-
-            Console.WriteLine($"Do you have any {cardRequested}'s?");
-
-            bool success = CheckIfHas(deck.pl1Cards, cardRequested);
-            if (success)
+            try
             {
-                Console.WriteLine("Thanks!");
-                RemoveCards(deck.pl1Cards, cardRequested); //1st parameter is the one giving up the cards.
-                AddThemIn(deck.compCards); //this parameter is the one who asked for them.
+                string cardRequested = AskForCard();
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine($"Do you have any {cardRequested}'s?");
 
-                CheckForBooks(deck.compCards, compBooks); //1st parameter:whose turn it is. 2nd parameter: his book pile. 3rd: his amount of books.
-                Console.WriteLine("I get to go again!");
-                ComputerPlayerTurn();
-            }
-            else
-            {
-                Console.WriteLine("No? Ok, I'll go fish.");
-
-                deck.compCards.Add(deck.centerPile[0]);
-                Cards cardPicked = (Cards)deck.centerPile[0];
-
-                deck.centerPile.Remove(deck.centerPile[0]);
-
-                if (cardPicked._rank == cardRequested)
+                bool success = CheckIfHas(deck.pl1Cards, cardRequested);
+                if (success)
                 {
-                    Console.WriteLine($"I picked {cardRequested}, the card I asked for!");
-                    CheckForBooks(deck.compCards, compBooks);
+                    Console.WriteLine("Thanks!");
+                    RemoveCards(deck.pl1Cards, cardRequested); //1st parameter is the one giving up the cards.
+                    AddThemIn(deck.compCards); //this parameter is the one who asked for them.
+
+                    CheckForBooks(deck.compCards, compBooks); //1st parameter:whose turn it is. 2nd parameter: his book pile. 3rd: his amount of books.
                     Console.WriteLine("I get to go again!");
                     ComputerPlayerTurn();
                 }
                 else
                 {
-                    bool winBook = CheckForBooks(deck.compCards, compBooks);
-                    if (winBook)
+                    Console.WriteLine("No? Ok, I'll go fish.");
+
+                    deck.compCards.Add(deck.centerPile[0]);
+                    Cards cardPicked = (Cards)deck.centerPile[0];
+
+                    deck.centerPile.Remove(deck.centerPile[0]);
+
+                    if (cardPicked._rank == cardRequested)
                     {
+                        Console.WriteLine($"I picked {cardRequested}, the card I asked for!");
+                        CheckForBooks(deck.compCards, compBooks);
                         Console.WriteLine("I get to go again!");
                         ComputerPlayerTurn();
                     }
+                    else
+                    {
+                        bool winBook = CheckForBooks(deck.compCards, compBooks);
+                        if (winBook)
+                        {
+                            Console.WriteLine("I get to go again!");
+                            ComputerPlayerTurn();
+                        }
+                    }
                 }
 
+            }
+            catch (StackOverflowException)
+            {
+                Console.WriteLine("I have no more cards to ask for, so I'll pick a new one.");
+                deck.compCards.Add(deck.centerPile[0]);
+                Cards cardPicked = (Cards)deck.centerPile[0];
+
+                deck.centerPile.Remove(deck.centerPile[0]);
+            }
+            
                 alreadyRequested.Clear();
                 CheckForBooks(deck.compCards, compBooks);
-            }
-            Console.WriteLine();
             
 
 
