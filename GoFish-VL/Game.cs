@@ -8,6 +8,7 @@ namespace GoFish_VL
 {
     public class Game
     {
+        string cardRequested;
         public ArrayList cardsWon = new ArrayList { };
         public ArrayList cardsOfSameRank = new ArrayList { };
         public ArrayList pl1Books = new ArrayList { };
@@ -160,11 +161,33 @@ namespace GoFish_VL
                 cardPicked.PrintCard();
                 Console.WriteLine();
 
-                bool winBook = CheckForBooks(deck.pl1Cards, pl1Books);
-                if (winBook)
+                if (currentPlayer == "Human")
                 {
-                    Console.WriteLine("Go again!");
-                    HumanPlayerTurn();
+                    if (cardPicked._rank == cardRequested)
+                    {
+                        Console.WriteLine("You picked the card you asked for!");
+                        CheckForBooks(deck.pl1Cards, pl1Books);
+                        Console.WriteLine("Go again!");
+                        HumanPlayerTurn();
+                    }
+                    else
+                    {
+                        bool winBook1 = CheckForBooks(deck.pl1Cards, pl1Books);
+                        if (winBook1)
+                        {
+                            Console.WriteLine("Go again!");
+                            HumanPlayerTurn();
+                        }
+                    }
+                }
+                else
+                {
+                    bool winBook = CheckForBooks(deck.pl1Cards, pl1Books);
+                    if (winBook)
+                    {
+                        Console.WriteLine("It's still my turn, so I'll go again.");
+                        HumanPlayerTurn();
+                    }
                 }
             }
             else
@@ -174,12 +197,35 @@ namespace GoFish_VL
 
                 deck.centerPile.Remove(deck.centerPile[0]);
 
-                bool winBook = CheckForBooks(deck.compCards, compBooks);
-                if (winBook)
+                if (currentPlayer == "Human")
                 {
-                    Console.WriteLine("I get to go again!");
-                    ComputerPlayerTurn();
+                    bool winBook = CheckForBooks(deck.pl1Cards, pl1Books);
+                    if (winBook)
+                    {
+                        Console.WriteLine("It's still you turn, though. Go again!");
+                        HumanPlayerTurn();
+                    }
                 }
+                else
+                {
+                    if (cardPicked._rank == cardRequested)
+                    {
+                        Console.WriteLine($"I picked {cardRequested}, the card I asked for!");
+                        CheckForBooks(deck.compCards, compBooks);
+                        Console.WriteLine("I get to go again!");
+                        ComputerPlayerTurn();
+                    }
+                    else
+                    {
+                        bool winBook = CheckForBooks(deck.compCards, compBooks);
+                        if (winBook)
+                        {
+                            Console.WriteLine("I get to go again!");
+                            ComputerPlayerTurn();
+                        }
+                    }
+                }
+               
             }
 
             
@@ -232,7 +278,7 @@ namespace GoFish_VL
             }
             else
             {
-                string cardRequested = AskForCard();
+                cardRequested = AskForCard();
                 bool validRequest = CheckIfHas(deck.pl1Cards, cardRequested);
                 Console.WriteLine();
                 if (!validRequest)
