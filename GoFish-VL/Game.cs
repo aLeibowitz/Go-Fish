@@ -16,7 +16,7 @@ namespace GoFish_VL
         public int compNumOfBooks = 0;
         public Deck deck;
         public string currentPlayer;
-        ArrayList alreadyRequested = new ArrayList(); //to help computer be a little "smarter" and not ask for the same card twice in one turn.
+        //ArrayList alreadyRequested = new ArrayList(); //to help computer be a little "smarter" and not ask for the same card twice in one turn.
 
 
 
@@ -182,12 +182,31 @@ namespace GoFish_VL
                 }
             }
 
+            
+        }
 
+        public void EndGame()
+        {
+
+            Console.WriteLine($"You won {pl1NumOfBooks} books, and I won {compNumOfBooks} books.");
+
+            if (pl1NumOfBooks > compNumOfBooks)
+            {
+                Console.WriteLine("YOU WIN!!!!");
+            }
+            else
+            {
+                Console.WriteLine("Sorry, better luck next time!");
+            }
+
+            Console.ReadKey();
         }
 
         public void HumanPlayerTurn()
         {
-            
+            if (deck.centerPile.Count == 0)
+                EndGame();
+
             Console.WriteLine();
             
                 //show the player his cards
@@ -269,6 +288,9 @@ namespace GoFish_VL
 
         public void ComputerPlayerTurn()
         {
+            if (deck.centerPile.Count == 0)
+                EndGame();
+
             currentPlayer = "Computer";
             CheckForBooks(deck.compCards, compBooks);
 
