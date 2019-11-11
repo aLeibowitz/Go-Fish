@@ -21,20 +21,35 @@ namespace GoFish_VL
 
 			Deck deck = new Deck();
 			deck.CreateDeck();
-			//deck.ShuffleDeck(); //for debugging purposes
+			deck.ShuffleDeck(); //for debugging purposes, to make the game go quicker, can comment this out
 			deck.Deal();
 		
 
             Game game = new Game(deck);
 
+            Console.WriteLine();
+            Console.WriteLine($"\t\t\t\t\tWelcome to the game of GO FISH!!!");
+            Console.WriteLine();
+            Console.WriteLine($"\t\t\t\t\t\t © A.Leibowitz");
+            Console.WriteLine();
+            Console.WriteLine("It's easy to play -- just follow the prompts, and see if you can win!");
+            Console.WriteLine();
+            Console.WriteLine("NOTE: The game is case-sensitive; please type all card rank names as shown on the screen.");
+            Console.WriteLine();
+            Console.WriteLine();
+
             do
             {
-                Console.WriteLine("My cards: ");
-                deck.PrintDeck(deck.compCards);
+                //can uncomment the below for debugging purposes
+                //Console.WriteLine("My cards: ");
+                //deck.PrintDeck(deck.compCards);
 
                 game.HumanPlayerTurn();
                 
                 game.ComputerPlayerTurn();
+
+                if (deck.centerPile.Count == 0)
+                    game.EndGame();
                 Console.WriteLine("Your turn now!");
                 Console.WriteLine();
             }
@@ -42,6 +57,7 @@ namespace GoFish_VL
             //while (game.pl1NumOfBooks + game.compNumOfBooks < 13); //this would be that the players keep on playing even after the deck is finished.
 
             game.EndGame();
+            
 		}
 	}
 }

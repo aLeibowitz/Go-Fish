@@ -235,14 +235,14 @@ namespace GoFish_VL
         {
             Console.WriteLine("There are no more cards in the deck. Let's count our books and see who won!!");
             Console.WriteLine();
-            Console.WriteLine($"You won {pl1NumOfBooks} books, and I won {compNumOfBooks} books.");
+            Console.WriteLine($"You completed {pl1NumOfBooks} books, and I completed {compNumOfBooks} books.");
 
             if (pl1NumOfBooks > compNumOfBooks)
             {
                 Console.WriteLine();
                 Console.WriteLine("YOU WIN!!!!");
                 Console.WriteLine("YOU WIN!!!!");
-                Console.WriteLine("YOU WIN!!!!");
+                Console.WriteLine("***Great job***");
 
             }
             else
@@ -261,9 +261,7 @@ namespace GoFish_VL
             Console.WriteLine();
             
                 //show the player his cards
-                Console.WriteLine("Here are your cards: ");
-                deck.PrintDeck(deck.pl1Cards);
-
+               
                 currentPlayer = "Human";
 
             if (deck.pl1Cards.Count == 0)
@@ -278,6 +276,9 @@ namespace GoFish_VL
             }
             else
             {
+                Console.WriteLine("Here are your cards: ");
+                deck.PrintDeck(deck.pl1Cards);
+
                 cardRequested = AskForCard();
                 bool validRequest = CheckIfHas(deck.pl1Cards, cardRequested);
                 Console.WriteLine();
